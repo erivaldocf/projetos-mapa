@@ -15,7 +15,6 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
   )
     .filter(Boolean)
     .sort();
-  z;
   // 3. Filtra as escolas pertencentes ao Município selecionado
   const escolasFiltradas = formData.municipio
     ? escolasDaDirec.filter((item) => item.municipio === formData.municipio)
