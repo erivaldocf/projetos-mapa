@@ -66,6 +66,7 @@ export default function Step4({
         descricao_projeto: formData.descricao_projeto,
         metodologia: formData.metodologia,
         ano_inicio: Number(formData.ano_inicio) || new Date().getFullYear(),
+        ano_fim: formData.ano_fim ? Number(formData.ano_fim) : null,
         periodicidade: formData.periodicidade,
 
         resultados: formData.resultados || "",

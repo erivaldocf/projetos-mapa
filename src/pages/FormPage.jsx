@@ -36,6 +36,7 @@ export default function FormPage() {
     descricao_projeto: "",
     metodologia: "",
     ano_inicio: "",
+    ano_fim: "",
     periodicidade: "",
     // Step 4
     resultados: "",
