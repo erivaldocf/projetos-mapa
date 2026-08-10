@@ -123,6 +123,27 @@ export default function Step2({
         />
       </div>
 
+      {/* Link do Projeto */}
+      <div className="md:col-span-3">
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Link do Projeto{" "}
+          <span className="text-gray-400 font-normal">(Opcional)</span>
+        </label>
+
+        <input
+          type="url"
+          value={formData.link_projeto || ""}
+          onChange={(e) => updateFormData({ link_projeto: e.target.value })}
+          placeholder="Ex: https://drive.google.com/..."
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        />
+
+        <p className="text-xs text-gray-500 mt-1">
+          Informe o link para acessar materiais, documentos, vídeos ou outras
+          informações relacionadas ao projeto.
+        </p>
+      </div>
+
       {/* Datas e Periodicidade em Grid de 3 colunas */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Ano de Início */}
@@ -172,27 +193,6 @@ export default function Step2({
             required
             className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
           />
-        </div>
-
-        {/* Link do Projeto */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Link do Projeto{" "}
-            <span className="text-gray-400 font-normal">(Opcional)</span>
-          </label>
-
-          <input
-            type="url"
-            value={formData.link_projeto || ""}
-            onChange={(e) => updateFormData({ link_projeto: e.target.value })}
-            placeholder="Ex: https://drive.google.com/..."
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-          />
-
-          <p className="text-xs text-gray-500 mt-1">
-            Informe o link para acessar materiais, documentos, vídeos ou outras
-            informações relacionadas ao projeto.
-          </p>
         </div>
       </div>
 
