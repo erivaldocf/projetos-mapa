@@ -30,7 +30,8 @@ export const MODALIDADES_ENSINO = [
   "Educação do Campo, Indígena e Quilombola",
   "Educação em Tempo Integral",
   "Educação a Distância (EaD)",
-  "Ensino Médio Regular e Noturno",
+  "Ensino Médio Regular",
+  "Ensino Médio Noturno",
 ];
 
 export const ANOS_SERIES = [

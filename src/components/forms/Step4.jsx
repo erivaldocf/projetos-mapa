@@ -33,6 +33,7 @@ export default function Step4({
 
         nome_projeto: formData.nome_projeto,
         docente_responsavel: formData.docente_responsavel,
+        link_projeto: formData.link_projeto || "",
         etapa_ensino: Array.isArray(formData.etapa_ensino)
           ? formData.etapa_ensino.join(", ")
           : formData.etapa_ensino || "",

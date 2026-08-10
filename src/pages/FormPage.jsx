@@ -31,6 +31,7 @@ export default function FormPage() {
     areas_conhecimento: [],
     habilidades_bncc: [],
     habilidades_bncc_computacao: [],
+    link_projeto: "",
     // Step 3
     tipo_projeto: "",
     descricao_projeto: "",
