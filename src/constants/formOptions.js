@@ -18,8 +18,8 @@ export const DIRECS = [
 ];
 
 export const ETAPAS_ENSINO = [
-  "ENSINO FUNDAMENTAL 1º AO 5º",
-  "ENSINO FUNDAMENTAL 6º AO 9º",
+  "ENSINO FUNDAMENTAL - ANOS INICIAIS",
+  "ENSINO FUNDAMENTAL - ANOS FINAIS",
   "ENSINO MÉDIO",
 ];
 
@@ -30,6 +30,7 @@ export const MODALIDADES_ENSINO = [
   "Educação do Campo, Indígena e Quilombola",
   "Educação em Tempo Integral",
   "Educação a Distância (EaD)",
+  "Ensino Médio Regular e Noturno",
 ];
 
 export const ANOS_SERIES = [
@@ -48,9 +49,15 @@ export const ANOS_SERIES = [
 ];
 
 export const ANOS_POR_ETAPA = {
-  "ENSINO FUNDAMENTAL 1º AO 5º": ["1º EF", "2º EF", "3º EF", "4º EF", "5º EF"],
+  "ENSINO FUNDAMENTAL - ANOS INICIAIS": [
+    "1º EF",
+    "2º EF",
+    "3º EF",
+    "4º EF",
+    "5º EF",
+  ],
 
-  "ENSINO FUNDAMENTAL 6º AO 9º": ["6º EF", "7º EF", "8º EF", "9º EF"],
+  "ENSINO FUNDAMENTAL - ANOS FINAIS": ["6º EF", "7º EF", "8º EF", "9º EF"],
 
   "ENSINO MÉDIO": ["1ª EM", "2ª EM", "3ª EM"],
 };

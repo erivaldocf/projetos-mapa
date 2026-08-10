@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 
 import { DIRECS } from "../../constants/formOptions";
 
 export default function Step1({ formData, updateFormData, escolas, nextStep }) {
+  const [erroEscola, setErroEscola] = useState(false);
   // 1. Filtra as escolas pertencentes à DIREC selecionada
   const escolasDaDirec = formData.direc
     ? escolas.filter((item) => item.direc === formData.direc)
@@ -19,6 +20,18 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
   const escolasFiltradas = formData.municipio
     ? escolasDaDirec.filter((item) => item.municipio === formData.municipio)
     : [];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!formData.inep_escola) {
+      setErroEscola(true);
+      return;
+    }
+
+    setErroEscola(false);
+    nextStep();
+  };
 
   // Trata a alteração da DIREC (limpa Município e Escola)
   const handleDirecChange = (e) => {
@@ -42,12 +55,15 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
   // Trata a seleção da Escola (guarda o INEP e o Nome internamente)
   const handleEscolaChange = (option) => {
     if (!option) {
+      setErroEscola(true);
       updateFormData({
         inep_escola: "",
         nome_escola: "",
       });
       return;
     }
+
+    setErroEscola(false);
 
     const escola = escolas.find(
       (item) => String(item.inep) === String(option.value),
@@ -59,15 +75,10 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
-        Identificação da Escola e Gestão
+        Identificação da Escola e da Gestão
       </h2>
 
       {/* 1. SELEÇÃO DE DIREC */}
@@ -144,18 +155,22 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
                   )
               : null
           }
-          onChange={(option) => {
-            const escola = escolas.find(
-              (item) => String(item.inep) === String(option.value),
-            );
-
-            updateFormData({
-              inep_escola: option.value,
-              nome_escola: escola.escola,
-            });
-          }}
+          onChange={handleEscolaChange}
           isSearchable
+          styles={{
+            control: (base) => ({
+              ...base,
+              borderColor: erroEscola ? "#dc2626" : base.borderColor,
+              boxShadow: erroEscola ? "0 0 0 1px #dc2626" : base.boxShadow,
+              "&:hover": {
+                borderColor: erroEscola ? "#dc2626" : base.borderColor,
+              },
+            }),
+          }}
         />
+        {erroEscola && (
+          <p className="mt-1 text-sm text-red-600">Selecione uma escola.</p>
+        )}
       </div>
 
       {/* Telefone */}

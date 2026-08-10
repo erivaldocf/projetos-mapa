@@ -62,6 +62,14 @@ export default function Step2({
       return;
     }
 
+    if (
+      !formData.modalidade_ensino ||
+      formData.modalidade_ensino.length === 0
+    ) {
+      alert("Por favor, selecione pelo menos uma Modalidade de Ensino.");
+      return;
+    }
+
     // Inclui opções informadas nos campos de texto "Outro"
     let componentesFinais = [...(formData.disciplinas || [])];
     if (
@@ -106,7 +114,7 @@ export default function Step2({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
-        Informações do Projeto e Pedagógico
+        Informações do Projeto: Pedagógico ou Gestão
       </h2>
 
       {/* Nome do Projeto */}
@@ -141,6 +149,22 @@ export default function Step2({
         />
       </div>
 
+      {/* Quantitativo de Estudantes Envolvidos */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Quantitativo de Estudantes Envolvidos
+        </label>
+        <input
+          type="number"
+          min="1"
+          value={formData.qtd_estudantes || ""}
+          onChange={(e) => updateFormData({ qtd_estudantes: e.target.value })}
+          placeholder="Ex: 25"
+          required
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        />
+      </div>
+
       {/* Etapa de Ensino */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -159,33 +183,6 @@ export default function Step2({
                 className="rounded text-blue-600 focus:ring-blue-500"
               />
               <span>{etapa}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Modalidade de Ensino */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Modalidade de Ensino (Opcional / Selecione quantas forem aplicáveis)
-        </label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 border p-3 rounded-lg bg-gray-50">
-          {MODALIDADES_ENSINO.map((modalidade) => (
-            <label
-              key={modalidade}
-              className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
-            >
-              <input
-                type="checkbox"
-                checked={(formData.modalidade_ensino || []).includes(
-                  modalidade,
-                )}
-                onChange={() =>
-                  handleCheckboxToggle("modalidade_ensino", modalidade)
-                }
-                className="rounded text-blue-600 focus:ring-blue-500"
-              />
-              <span>{modalidade}</span>
             </label>
           ))}
         </div>
@@ -222,20 +219,31 @@ export default function Step2({
         </div>
       </div>
 
-      {/* Quantitativo de Estudantes Envolvidos */}
+      {/* Modalidade de Ensino */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Quantitativo de Estudantes Envolvidos
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Modalidade de Ensino (Selecione quantas forem aplicáveis)
         </label>
-        <input
-          type="number"
-          min="1"
-          value={formData.qtd_estudantes || ""}
-          onChange={(e) => updateFormData({ qtd_estudantes: e.target.value })}
-          placeholder="Ex: 25"
-          required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 border p-3 rounded-lg bg-gray-50">
+          {MODALIDADES_ENSINO.map((modalidade) => (
+            <label
+              key={modalidade}
+              className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={(formData.modalidade_ensino || []).includes(
+                  modalidade,
+                )}
+                onChange={() =>
+                  handleCheckboxToggle("modalidade_ensino", modalidade)
+                }
+                className="rounded text-blue-600 focus:ring-blue-500"
+              />
+              <span>{modalidade}</span>
+            </label>
+          ))}
+        </div>
       </div>
 
       {/* Componentes Curriculares Envolvidos */}
