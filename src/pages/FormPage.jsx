@@ -22,8 +22,10 @@ export default function FormPage() {
     nome_gestor: "",
     // Step 2
     nome_projeto: "",
-    docente_responsavel: "",
+    responsavel: "",
+    qtd_professores: "",
     etapa_ensino: [],
+    objetivo: "",
     modalidade_ensino: [],
     ano_serie: [],
     qtd_estudantes: "",
@@ -39,6 +41,7 @@ export default function FormPage() {
     ano_inicio: "",
     ano_fim: "",
     periodicidade: "",
+    oferta_ensino: [],
     // Step 4
     resultados: "",
     concorda_lgpd: false,

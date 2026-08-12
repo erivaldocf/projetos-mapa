@@ -43,17 +43,15 @@ export default function Step2({
         />
       </div>
 
-      {/* Docente Responsável */}
+      {/* Responsável pelo Projeto*/}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Docente Responsável pelo Projeto
+          Responsável pelo Projeto
         </label>
         <input
           type="text"
-          value={formData.docente_responsavel || ""}
-          onChange={(e) =>
-            updateFormData({ docente_responsavel: e.target.value })
-          }
+          value={formData.responsavel || ""}
+          onChange={(e) => updateFormData({ responsavel: e.target.value })}
           placeholder="Nome do(a) professor(a) responsável"
           required
           className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
@@ -76,6 +74,22 @@ export default function Step2({
         />
       </div>
 
+      {/* Quantitativo de Professores Envolvidos */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Quantitativo de Professores Envolvidos
+        </label>
+        <input
+          type="number"
+          min="1"
+          value={formData.qtd_professores || ""}
+          onChange={(e) => updateFormData({ qtd_professores: e.target.value })}
+          placeholder="Ex: 25"
+          required
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        />
+      </div>
+
       {/* Descrição do Projeto */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -87,7 +101,22 @@ export default function Step2({
           onChange={(e) =>
             updateFormData({ descricao_projeto: e.target.value })
           }
-          placeholder="Descreva de forma clara os objetivos e a proposta do projeto..."
+          placeholder="Descreva de forma clara a proposta do projeto..."
+          required
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        />
+      </div>
+
+      {/* Objetivo */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Objetivo do Projeto
+        </label>
+        <textarea
+          rows={3}
+          value={formData.objetivo || ""}
+          onChange={(e) => updateFormData({ objetivo: e.target.value })}
+          placeholder="Descreva o objetivo principal do projeto..."
           required
           className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
         />
@@ -121,27 +150,6 @@ export default function Step2({
           required
           className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
         />
-      </div>
-
-      {/* Link do Projeto */}
-      <div className="md:col-span-3">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Link do Projeto{" "}
-          <span className="text-gray-400 font-normal">(Opcional)</span>
-        </label>
-
-        <input
-          type="url"
-          value={formData.link_projeto || ""}
-          onChange={(e) => updateFormData({ link_projeto: e.target.value })}
-          placeholder="Ex: https://drive.google.com/..."
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
-        />
-
-        <p className="text-xs text-gray-500 mt-1">
-          Informe o link para acessar materiais, documentos, vídeos ou outras
-          informações relacionadas ao projeto.
-        </p>
       </div>
 
       {/* Datas e Periodicidade em Grid de 3 colunas */}

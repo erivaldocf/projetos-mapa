@@ -23,15 +23,18 @@ export const ETAPAS_ENSINO = [
   "ENSINO MÉDIO",
 ];
 
+export const OFERTAS_ENSINO = [
+  "Ensino Médio Regular",
+  "Ensino Médio Noturno",
+  "Educação em Tempo Integral",
+];
+
 export const MODALIDADES_ENSINO = [
   "Educação de Jovens e Adultos (EJA)",
   "Educação Profissional e Tecnológica (EPT)",
   "Educação Especial",
   "Educação do Campo, Indígena e Quilombola",
-  "Educação em Tempo Integral",
   "Educação a Distância (EaD)",
-  "Ensino Médio Regular",
-  "Ensino Médio Noturno",
 ];
 
 export const ANOS_SERIES = [
@@ -63,23 +66,25 @@ export const ANOS_POR_ETAPA = {
   "ENSINO MÉDIO": ["1ª EM", "2ª EM", "3ª EM"],
 };
 
-export const COMPONENTES_CURRICULARES = [
-  "Língua Portuguesa",
-  "Matemática",
-  "História",
-  "Geografia",
-  "Ciências",
-  "Biologia",
-  "Química",
-  "Física",
-  "Artes",
-  "Educação Física",
-  "Língua Inglesa",
-  "Língua Espanhola",
-  "Filosofia",
-  "Sociologia",
-];
+export const COMPONENTES_CURRICULARES = {
+  Linguagens: [
+    "Língua Portuguesa",
+    "Língua Inglesa",
+    "Língua Espanhola",
+    "Arte",
+    "Educação Física",
+  ],
 
+  Matemática: ["Matemática"],
+
+  "Ciências da Natureza": ["Ciências", "Biologia", "Química", "Física"],
+
+  "Ciências Humanas": ["História", "Geografia"],
+
+  "Ensino Religioso": ["Ensino Religioso"],
+
+  "Filosofia e Sociologia": ["Filosofia", "Sociologia"],
+};
 export const AREAS_CONHECIMENTO = [
   "Linguagens",
   "Matemática",

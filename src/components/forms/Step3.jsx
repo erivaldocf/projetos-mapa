@@ -8,6 +8,7 @@ import {
   ANOS_POR_ETAPA,
   COMPONENTES_CURRICULARES,
   AREAS_CONHECIMENTO,
+  OFERTAS_ENSINO,
 } from "../../constants/formOptions";
 
 // Importando os arquivos JSON gerados pelo script
@@ -54,6 +55,11 @@ export default function Step3({
     // Validações de seleção mínima
     if (!formData.etapa_ensino || formData.etapa_ensino.length === 0) {
       alert("Por favor, selecione pelo menos uma Etapa de Ensino.");
+      return;
+    }
+
+    if (!formData.oferta_ensino || formData.oferta_ensino.length === 0) {
+      alert("Por favor, selecione pelo menos uma Oferta de Ensino.");
       return;
     }
 
@@ -114,7 +120,7 @@ export default function Step3({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
-        Informações do Projeto: Pedagógico ou Gestão
+        Informações do Projeto
       </h2>
 
       {/* Etapa de Ensino */}
@@ -171,6 +177,31 @@ export default function Step3({
         </div>
       </div>
 
+      {/* Oferta de Ensino */}
+
+      <div className="">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Oferta de Ensino (Selecione quantas forem aplicáveis)
+        </label>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 border p-3 rounded-lg bg-gray-50">
+          {OFERTAS_ENSINO.map((oferta) => (
+            <label
+              key={oferta}
+              className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={(formData.oferta_ensino || []).includes(oferta)}
+                onChange={() => handleCheckboxToggle("oferta_ensino", oferta)}
+                className="rounded text-blue-600 focus:ring-blue-500"
+              />
+              <span>{oferta}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
       {/* Modalidade de Ensino */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -203,22 +234,37 @@ export default function Step3({
         <label className="block text-sm font-medium text-gray-700 mb-2">
           Componente Curricular Envolvido (Marque quantos desejar)
         </label>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 border p-3 rounded-lg bg-gray-50 max-h-48 overflow-y-auto">
-          {COMPONENTES_CURRICULARES.map((comp) => (
-            <label
-              key={comp}
-              className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
-            >
-              <input
-                type="checkbox"
-                checked={(formData.disciplinas || []).includes(comp)}
-                onChange={() => handleCheckboxToggle("disciplinas", comp)}
-                className="rounded text-blue-600 focus:ring-blue-500"
-              />
-              <span>{comp}</span>
-            </label>
-          ))}
+
+        <div className="space-y-4 border p-3 rounded-lg bg-gray-50 max-h-96 overflow-y-auto">
+          {Object.entries(COMPONENTES_CURRICULARES).map(
+            ([area, componentes]) => (
+              <div key={area}>
+                <h3 className="font-semibold text-gray-800 mb-2">{area}</h3>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                  {componentes.map((comp) => (
+                    <label
+                      key={comp}
+                      className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={(formData.disciplinas || []).includes(comp)}
+                        onChange={() =>
+                          handleCheckboxToggle("disciplinas", comp)
+                        }
+                        className="rounded text-blue-600 focus:ring-blue-500"
+                      />
+
+                      <span>{comp}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ),
+          )}
         </div>
+
         <div className="mt-2">
           <input
             type="text"

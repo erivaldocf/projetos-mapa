@@ -32,11 +32,15 @@ export default function Step4({
         telefone: formData.telefone,
 
         nome_projeto: formData.nome_projeto,
-        docente_responsavel: formData.docente_responsavel,
+        responsavel: formData.responsavel,
         link_projeto: formData.link_projeto || "",
         etapa_ensino: Array.isArray(formData.etapa_ensino)
           ? formData.etapa_ensino.join(", ")
           : formData.etapa_ensino || "",
+
+        oferta_ensino: Array.isArray(formData.oferta_ensino)
+          ? formData.oferta_ensino.join(", ")
+          : formData.oferta_ensino || "",
 
         modalidade_ensino: Array.isArray(formData.modalidade_ensino)
           ? formData.modalidade_ensino.join(", ")
@@ -46,6 +50,7 @@ export default function Step4({
           ? formData.ano_serie.join(", ")
           : formData.ano_serie || "",
         qtd_estudantes: Number(formData.qtd_estudantes) || 0,
+        qtd_professores: Number(formData.qtd_professores) || 0,
 
         // Converte os arrays de disciplinas e áreas em texto (separados por vírgula)
         disciplinas: Array.isArray(formData.disciplinas)
@@ -66,13 +71,13 @@ export default function Step4({
           : formData.habilidades_bncc_computacao || "",
         descricao_projeto: formData.descricao_projeto,
         metodologia: formData.metodologia,
+        objetivo: formData.objetivo,
         ano_inicio: Number(formData.ano_inicio) || new Date().getFullYear(),
         ano_fim: formData.ano_fim ? Number(formData.ano_fim) : null,
         periodicidade: formData.periodicidade,
 
         resultados: formData.resultados || "",
         // Nome correto da coluna conforme criado no Supabase:
-        audiodescricao_fotos: formData.descricao_fotos || "",
         concorda_lgpd: Boolean(formData.concorda_lgpd),
       };
 
@@ -93,7 +98,7 @@ export default function Step4({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
-        Imagens e Envio Final
+        Link do Projeto
       </h2>
 
       {erroMsg && (
@@ -133,39 +138,25 @@ export default function Step4({
         </label>
       </div>
 
-      {/* Upload de Fotografias */}
-      <div>
+      {/* Link do Projeto */}
+      <div className="md:col-span-3">
         <label className="block text-sm font-medium text-gray-700 mb-1">
-          Fotografias
+          Link do Projeto{" "}
+          <span className="text-gray-400 font-normal">(Opcional)</span>
         </label>
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={(e) =>
-            updateFormData({ fotos_arquivos: Array.from(e.target.files) })
-          }
-          className="w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2 focus:outline-none"
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          Você pode selecionar múltiplos arquivos de imagem.
-        </p>
-      </div>
 
-      {/* Audiodescrição / Texto Alternativo */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Descrição das fotografias enviadas (Audiodescrição / Texto
-          Alternativo)
-        </label>
-        <textarea
-          rows={3}
-          value={formData.descricao_fotos || ""}
-          onChange={(e) => updateFormData({ descricao_fotos: e.target.value })}
-          placeholder="Ex: Foto 1 - Três alunos no laboratório ajustando um protótipo de robô..."
-          required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        <input
+          type="url"
+          value={formData.link_projeto || ""}
+          onChange={(e) => updateFormData({ link_projeto: e.target.value })}
+          placeholder="Ex: https://drive.google.com/..."
+          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
         />
+
+        <p className="text-xs text-gray-500 mt-1">
+          Informe o link para acessar materiais, documentos, vídeos ou outras
+          informações relacionadas ao projeto.
+        </p>
       </div>
 
       {/* Botões de Ação */}
