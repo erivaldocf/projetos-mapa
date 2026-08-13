@@ -141,13 +141,49 @@ function MapaProjetos() {
               nomeEscola: escola.escola || `Escola INEP ${projeto.inep_escola}`,
               municipio: escola.municipio || "",
               corDirec: obterCorDirec(escola.municipio),
+
               lat: lat,
               lng: lng,
-              etapa: projeto.etapa || projeto.etapa_ensino || "",
+
               modalidade: projeto.modalidade || projeto.modalidade_ensino || "",
-              area: projeto.area || projeto.area_conhecimento || "",
+
+              nome_projeto: projeto.nome_projeto || projeto.nome || "",
+              responsavel:
+                projeto.responsavel || projeto.nome_responsavel || "",
+              qtd_professores:
+                projeto.qtd_professores || projeto.quantidade_professores || "",
+              qtd_estudantes:
+                projeto.qtd_estudantes || projeto.quantidade_estudantes || "",
+              link_projeto: projeto.link_projeto || projeto.link || "",
+              descricao_projeto:
+                projeto.descricao_projeto || projeto.descricao || "",
+              oferta_ensino:
+                projeto.oferta_ensino || projeto.ofertas_ensino || "",
+
+              objetivo: projeto.objetivo || "",
+              metodologia: projeto.metodologia || "",
+              tipo_projeto: projeto.tipo_projeto || projeto.tipo || "",
+              periodicidade: projeto.periodicidade || "",
+              ano_inicio: projeto.ano_inicio || projeto.ano_de_inicio || "",
+              ano_fim: projeto.ano_fim || projeto.ano_de_fim || "",
+              resultados: projeto.resultados || "",
+              ano_serie: projeto.ano_serie || projeto.anos_series || "",
+              etapa_ensino: projeto.etapa_ensino || projeto.etapas_ensino || "",
+              area:
+                projeto.area ||
+                projeto.area_conhecimento ||
+                projeto.areas_conhecimento ||
+                "",
+
               componente:
-                projeto.componente || projeto.componente_curricular || "",
+                projeto.componente ||
+                projeto.componente_curricular ||
+                projeto.disciplinas ||
+                "",
+              habilidades_bncc: projeto.habilidades_bncc || "",
+              habilidades_bncc_computacao:
+                projeto.habilidades_bncc_computacao || "",
+
               dadosCompletosEscola: escola,
               dadosCompletosProjeto: projeto,
             };

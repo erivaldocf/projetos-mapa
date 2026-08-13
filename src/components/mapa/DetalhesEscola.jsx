@@ -1,6 +1,6 @@
 import React from "react";
 
-function DetalhesEscola({ projetoSelecionado, onClose }) {
+const DetalhesEscola = ({ projetoSelecionado, onClose }) => {
   if (!projetoSelecionado) return null;
 
   return (
@@ -21,146 +21,320 @@ function DetalhesEscola({ projetoSelecionado, onClose }) {
       {/* Conteúdo com Scroll */}
       <div className="p-6 overflow-y-auto flex flex-col gap-5">
         {/* BLOCO 1: ESCOLA */}
+
         <div className="bg-slate-50 p-4.5 rounded-xl border border-slate-200">
           <span className="text-xs font-bold text-sky-600 uppercase tracking-wider block mb-3.5">
             🏫 Informações da Instituição
           </span>
 
-          <div className="mb-3.5">
-            <label className="text-[12px] text-slate-500 font-bold uppercase">
-              Nome da Escola:
-            </label>
-            <h3 className="m-0 mt-1 text-slate-900 text-lg font-bold leading-snug">
-              {projetoSelecionado.nomeEscola}
-            </h3>
-          </div>
+          {/* Nome */}
+          {projetoSelecionado.nomeEscola && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Nome da Escola:
+              </label>
 
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.nomeEscola}
+              </p>
+            </div>
+          )}
+
+          {/* Município */}
           {projetoSelecionado.municipio && (
             <div className="mb-3.5">
               <label className="text-[12px] text-slate-500 font-bold uppercase">
                 Município:
               </label>
-              <p className="m-0 mt-0.5 text-slate-700 text-sm font-semibold">
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
                 {projetoSelecionado.municipio}
               </p>
             </div>
           )}
 
-          {Object.entries(projetoSelecionado.dadosCompletosEscola || {}).map(
-            ([chave, valor]) => {
-              if (
-                !valor ||
-                [
-                  "Nome",
-                  "NOME DA ESCOLA",
-                  "Escola",
-                  "Coordenadas",
-                  "Coordenada",
-                  "COORDENADAS",
-                ].includes(chave)
-              )
-                return null;
-              return (
-                <div key={`escola_${chave}`} className="mb-2.5">
-                  <label className="text-xs text-slate-500 font-bold">
-                    {chave}:
-                  </label>
-                  <p className="m-0 mt-0.5 text-slate-700 text-sm leading-relaxed">
-                    {String(valor)}
-                  </p>
-                </div>
-              );
-            },
+          {/* INEP */}
+          {projetoSelecionado.dadosCompletosEscola?.inep && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                INEP:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.dadosCompletosEscola.inep}
+              </p>
+            </div>
+          )}
+
+          {/* DIREC */}
+          {projetoSelecionado.dadosCompletosEscola?.direc && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                DIREC:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.dadosCompletosEscola.direc}
+              </p>
+            </div>
           )}
         </div>
 
         {/* BLOCO 2: PROJETO */}
-        <div className="bg-emerald-50/60 p-4.5 rounded-xl border border-emerald-200">
-          <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider block mb-3.5">
+        <div className="bg-slate-50 p-4.5 rounded-xl border border-slate-200">
+          <span className="text-xs font-bold text-sky-600 uppercase tracking-wider block mb-3.5">
             💡 Detalhes da Ação Tecnológica
           </span>
-
-          {projetoSelecionado.etapa && (
+          {/* Nome do projeto */}
+          {projetoSelecionado.nome_projeto && (
             <div className="mb-3.5">
-              <label className="text-xs text-emerald-800 font-bold">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Nome do Projeto:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.nome_projeto}
+              </p>
+            </div>
+          )}
+          {/* Responsável pelo projeto */}
+          {projetoSelecionado.responsavel && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Responsável:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.responsavel}
+              </p>
+            </div>
+          )}
+          {/* Quantidade de professores */}
+          {projetoSelecionado.qtd_professores !== undefined && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Quantidade de Professores:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.qtd_professores}
+              </p>
+            </div>
+          )}
+          {/* Quantidade de alunos */}
+          {projetoSelecionado.qtd_estudantes !== undefined && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Quantidade de Estudantes:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.qtd_estudantes}
+              </p>
+            </div>
+          )}
+          {/* Descrição do projeto */}
+          {projetoSelecionado.descricao_projeto && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Descrição do Projeto:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.descricao_projeto}
+              </p>
+            </div>
+          )}
+          {/* Objetivo */}
+          {projetoSelecionado.objetivo && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Objetivo:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.objetivo}
+              </p>
+            </div>
+          )}
+          {/* Metodologia */}
+          {projetoSelecionado.metodologia && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Metodologia:
+              </label>
+
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.metodologia}
+              </p>
+            </div>
+          )}
+          {/* Resultados */}
+          {projetoSelecionado.resultados && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Resultados:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.resultados}
+              </p>
+            </div>
+          )}
+
+          {/* Ano de Inicio */}
+          {projetoSelecionado.ano_inicio && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Ano de Início:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.ano_inicio}
+              </p>
+            </div>
+          )}
+
+          {/* Ano de Fim */}
+          {projetoSelecionado.ano_fim && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Ano de Fim:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.ano_fim}
+              </p>
+            </div>
+          )}
+
+          {/* Periodicidade */}
+          {projetoSelecionado.periodicidade && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Periodicidade:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.periodicidade}
+              </p>
+            </div>
+          )}
+
+          {/* Etapa de Ensino */}
+          {projetoSelecionado.etapa_ensino && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
                 Etapa de Ensino:
               </label>
-              <span className="inline-block mt-1 px-2.5 py-1 text-xs rounded-md bg-sky-100 text-sky-800 font-semibold">
-                {projetoSelecionado.etapa}
-              </span>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.etapa_ensino}
+              </p>
             </div>
           )}
 
+          {/* Ano / Serie */}
+          {projetoSelecionado.ano_serie && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Ano / Série:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.ano_serie}
+              </p>
+            </div>
+          )}
+
+          {/* Oferta de Ensino */}
+          {projetoSelecionado.oferta_ensino && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Oferta de Ensino:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.oferta_ensino}
+              </p>
+            </div>
+          )}
+
+          {/* Modalidade */}
           {projetoSelecionado.modalidade && (
             <div className="mb-3.5">
-              <label className="text-xs text-emerald-800 font-bold">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
                 Modalidade:
               </label>
-              <span className="inline-block mt-1 px-2.5 py-1 text-xs rounded-md bg-teal-100 text-teal-800 font-semibold">
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
                 {projetoSelecionado.modalidade}
-              </span>
+              </p>
             </div>
           )}
 
-          {projetoSelecionado.area && (
-            <div className="mb-3.5">
-              <label className="text-xs text-emerald-800 font-bold">
-                Área do Conhecimento:
-              </label>
-              <span className="inline-block mt-1 px-2.5 py-1 text-xs rounded-md bg-amber-100 text-amber-900 font-semibold">
-                {projetoSelecionado.area}
-              </span>
-            </div>
-          )}
-
+          {/* Componente Curricular */}
           {projetoSelecionado.componente && (
             <div className="mb-3.5">
-              <label className="text-xs text-emerald-800 font-bold">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
                 Componente Curricular:
               </label>
-              <span className="inline-block mt-1 px-2.5 py-1 text-xs rounded-md bg-indigo-100 text-indigo-900 font-semibold">
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
                 {projetoSelecionado.componente}
-              </span>
+              </p>
             </div>
           )}
 
-          {Object.entries(projetoSelecionado.dadosCompletosProjeto || {}).map(
-            ([chave, valor]) => {
-              if (
-                !valor ||
-                [
-                  "INEP da Escola",
-                  "INEP",
-                  "Etapa de Ensino",
-                  "Etapa",
-                  "Modalidade de Ensino",
-                  "Modalidade",
-                  "Área de Conhecimento",
-                  "Area de Conhecimento",
-                  "Área",
-                  "Area",
-                  "Componente Curricular",
-                  "Componente",
-                  "Disciplina",
-                ].includes(chave)
-              )
-                return null;
-              return (
-                <div key={`proj_${chave}`} className="mb-2.5">
-                  <label className="text-xs text-emerald-800 font-bold">
-                    {chave}:
-                  </label>
-                  <p className="m-0 mt-0.5 text-emerald-950 text-sm leading-relaxed">
-                    {String(valor)}
-                  </p>
-                </div>
-              );
-            },
+          {/* Área do Conhecimento */}
+          {projetoSelecionado.area && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Área do Conhecimento:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.area}
+              </p>
+            </div>
+          )}
+
+          {/* Codigos da BNCC */}
+          {projetoSelecionado.habilidades_bncc && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Habilidades da BNCC:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.habilidades_bncc}
+              </p>
+            </div>
+          )}
+
+          {/* Codigos da BNCC Computação */}
+          {projetoSelecionado.habilidades_bncc_computacao && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Habilidades da BNCC Computação:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                {projetoSelecionado.habilidades_bncc_computacao}
+              </p>
+            </div>
+          )}
+
+          {/* Link do projeto */}
+          {projetoSelecionado.link_projeto && (
+            <div className="mb-3.5">
+              <label className="text-[12px] text-slate-500 font-bold uppercase">
+                Link do Projeto:
+              </label>
+              <p className="m-0 mt-0.5 text-slate-700 text-sm">
+                <a
+                  href={projetoSelecionado.link_projeto}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  {projetoSelecionado.link_projeto}
+                </a>
+              </p>
+            </div>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default DetalhesEscola;
