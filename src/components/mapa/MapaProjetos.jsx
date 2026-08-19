@@ -73,6 +73,8 @@ function MapaProjetos() {
   const [modalidadesSelecionadas, setModalidadesSelecionadas] = useState([]);
   const [areasSelecionadas, setAreasSelecionadas] = useState([]);
   const [componentesSelecionados, setComponentesSelecionados] = useState([]);
+  const [metodologiaHibridaSelecionada, setMetodologiaHibridaSelecionada] =
+    useState(false);
   const [painelFiltrosAberto, setPainelFiltrosAberto] = useState(true);
 
   const [projetoSelecionado, setProjetoSelecionado] = useState(null);
@@ -282,6 +284,10 @@ function MapaProjetos() {
     );
   };
 
+  const toggleMetodologiaHibrida = () => {
+    setMetodologiaHibridaSelecionada((prev) => !prev);
+  };
+
   const checarEtapaMatch = (
     etapaProjeto,
     filtroSelecionado,
@@ -375,6 +381,9 @@ function MapaProjetos() {
       item.dadosCompletosProjeto,
     );
 
+    const passaMetodologiaHibrida =
+      !metodologiaHibridaSelecionada || item.metodologia_hibrida === true;
+
     const passaCategoria =
       !temFiltroCategoriaAtivo ||
       passaEtapa ||
@@ -388,7 +397,9 @@ function MapaProjetos() {
       !municipioClicadoNome ||
       normalizarTexto(item.municipio) === normalizarTexto(municipioClicadoNome);
 
-    return passaCategoria && passaDirec && passaMunicipio;
+    return (
+      passaCategoria && passaMetodologiaHibrida && passaDirec && passaMunicipio
+    );
   });
 
   return (
@@ -408,34 +419,40 @@ function MapaProjetos() {
       {/* CONTAINER DO MAPA */}
       <div className="flex-1 relative h-full">
         {/* PAINEL SUPERIOR DIREITO */}
-        <div className="absolute top-[15px] right-[15px] z-[1000] flex flex-row items-start gap-3.5 font-sans">
-          <div className="flex-none max-h-[calc(100vh-40px)] overflow-y-auto">
-            <PainelFiltros
-              painelFiltrosAberto={painelFiltrosAberto}
-              setPainelFiltrosAberto={setPainelFiltrosAberto}
-              projetosFiltradosCount={projetosFiltrados.length}
-              etapasSelecionadas={etapasSelecionadas}
-              toggleEtapa={toggleEtapa}
-              modalidadesSelecionadas={modalidadesSelecionadas}
-              toggleModalidade={toggleModalidade}
-              areasSelecionadas={areasSelecionadas}
-              toggleArea={toggleArea}
-              componentesSelecionados={componentesSelecionados}
-              toggleComponente={toggleComponente}
-              limparFiltros={() => {
-                setEtapasSelecionadas([]);
-                setModalidadesSelecionadas([]);
-                setAreasSelecionadas([]);
-                setComponentesSelecionados([]);
-              }}
-            />
+        <div className="absolute top-[15px] right-[15px] z-[1000] flex flex-row items-start gap-3.5 font-sans pointer-events-none">
+          <div className="flex-none max-h-[calc(100vh-40px)] overflow-y-auto pointer-events-none">
+            <div className="pointer-events-auto">
+              <PainelFiltros
+                painelFiltrosAberto={painelFiltrosAberto}
+                setPainelFiltrosAberto={setPainelFiltrosAberto}
+                projetosFiltradosCount={projetosFiltrados.length}
+                etapasSelecionadas={etapasSelecionadas}
+                toggleEtapa={toggleEtapa}
+                modalidadesSelecionadas={modalidadesSelecionadas}
+                toggleModalidade={toggleModalidade}
+                areasSelecionadas={areasSelecionadas}
+                toggleArea={toggleArea}
+                componentesSelecionados={componentesSelecionados}
+                toggleComponente={toggleComponente}
+                metodologiaHibridaSelecionada={metodologiaHibridaSelecionada}
+                toggleMetodologiaHibrida={toggleMetodologiaHibrida}
+                limparFiltros={() => {
+                  setEtapasSelecionadas([]);
+                  setModalidadesSelecionadas([]);
+                  setAreasSelecionadas([]);
+                  setComponentesSelecionados([]);
+                }}
+              />
+            </div>
           </div>
 
-          <div className="flex-none max-h-[calc(100vh-40px)] overflow-y-auto">
-            <LegendaDirec
-              onSelectDirec={handleSelectDirecDaLegenda}
-              direcSelecionada={direcSelecionada}
-            />
+          <div className="flex-none max-h-[calc(100vh-40px)] overflow-y-auto pointer-events-none">
+            <div className="pointer-events-auto">
+              <LegendaDirec
+                onSelectDirec={handleSelectDirecDaLegenda}
+                direcSelecionada={direcSelecionada}
+              />
+            </div>
           </div>
         </div>
 

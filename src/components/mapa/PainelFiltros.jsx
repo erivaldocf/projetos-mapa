@@ -18,13 +18,16 @@ function PainelFiltros({
   toggleArea,
   componentesSelecionados,
   toggleComponente,
+  metodologiaHibridaSelecionada,
+  toggleMetodologiaHibrida,
   limparFiltros,
 }) {
   const temFiltroAtivo =
     etapasSelecionadas.length > 0 ||
     modalidadesSelecionadas.length > 0 ||
     areasSelecionadas.length > 0 ||
-    componentesSelecionados.length > 0;
+    componentesSelecionados.length > 0 ||
+    metodologiaHibridaSelecionada;
 
   return (
     <div className="bg-white/95 p-3 px-3.5 rounded-lg shadow-md w-[290px] font-sans">
@@ -142,6 +145,24 @@ function PainelFiltros({
                 );
               })}
             </div>
+          </div>
+
+          {/* Metodologia Híbrida */}
+          <div>
+            <span className="text-[11px] font-bold text-slate-600 block mb-1">
+              Metodologia:
+            </span>
+
+            <button
+              onClick={toggleMetodologiaHibrida}
+              className={`px-2 py-0.5 text-[10px] rounded-full border transition-all ${
+                metodologiaHibridaSelecionada
+                  ? "border-purple-700 bg-purple-700 text-white font-bold"
+                  : "border-purple-700 bg-white text-purple-700 hover:bg-purple-50"
+              }`}
+            >
+              Metodologia Híbrida
+            </button>
           </div>
 
           {temFiltroAtivo && (

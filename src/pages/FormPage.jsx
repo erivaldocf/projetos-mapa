@@ -34,6 +34,7 @@ export default function FormPage() {
     habilidades_bncc: [],
     habilidades_bncc_computacao: [],
     link_projeto: "",
+    metodologia_hibrida: false,
     // Step 3
     tipo_projeto: "",
     descricao_projeto: "",

@@ -137,6 +137,25 @@ export default function Step2({
         />
       </div>
 
+      {/* Metodologia Híbrida */}
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          id="metodologia_hibrida"
+          checked={formData.metodologia_hibrida || false}
+          onChange={(e) =>
+            updateFormData({ metodologia_hibrida: e.target.checked })
+          }
+          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+        />
+        <label
+          htmlFor="metodologia_hibrida"
+          className="ml-2 text-sm font-medium text-gray-700"
+        >
+          Utiliza metodologia híbrida (presencial e online)
+        </label>
+      </div>
+
       {/* Resultados Alcançados */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">

@@ -71,6 +71,7 @@ export default function Step4({
           : formData.habilidades_bncc_computacao || "",
         descricao_projeto: formData.descricao_projeto,
         metodologia: formData.metodologia,
+        metodologia_hibrida: Boolean(formData.metodologia_hibrida),
         objetivo: formData.objetivo,
         ano_inicio: Number(formData.ano_inicio) || new Date().getFullYear(),
         ano_fim: formData.ano_fim ? Number(formData.ano_fim) : null,

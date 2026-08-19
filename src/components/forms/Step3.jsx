@@ -235,33 +235,23 @@ export default function Step3({
           Componente Curricular Envolvido (Marque quantos desejar)
         </label>
 
-        <div className="space-y-4 border p-3 rounded-lg bg-gray-50 max-h-96 overflow-y-auto">
-          {Object.entries(COMPONENTES_CURRICULARES).map(
-            ([area, componentes]) => (
-              <div key={area}>
-                <h3 className="font-semibold text-gray-800 mb-2">{area}</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 border p-3 rounded-lg bg-gray-50 max-h-96 overflow-y-auto">
+          {Object.entries(COMPONENTES_CURRICULARES).flatMap(([, componentes]) =>
+            componentes.map((comp) => (
+              <label
+                key={comp}
+                className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  checked={(formData.disciplinas || []).includes(comp)}
+                  onChange={() => handleCheckboxToggle("disciplinas", comp)}
+                  className="rounded text-blue-600 focus:ring-blue-500"
+                />
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                  {componentes.map((comp) => (
-                    <label
-                      key={comp}
-                      className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={(formData.disciplinas || []).includes(comp)}
-                        onChange={() =>
-                          handleCheckboxToggle("disciplinas", comp)
-                        }
-                        className="rounded text-blue-600 focus:ring-blue-500"
-                      />
-
-                      <span>{comp}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            ),
+                <span>{comp}</span>
+              </label>
+            )),
           )}
         </div>
 
