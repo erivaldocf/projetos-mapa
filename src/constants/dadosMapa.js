@@ -36,6 +36,7 @@ export const COMPONENTES_CURRICULARES = [
   "Educação Física",
   "Língua Inglesa",
   "Língua Espanhola",
+  "Ensino Religioso",
   "Filosofia",
   "Sociologia",
 ];
