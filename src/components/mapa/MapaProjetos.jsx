@@ -441,6 +441,7 @@ function MapaProjetos() {
                   setModalidadesSelecionadas([]);
                   setAreasSelecionadas([]);
                   setComponentesSelecionados([]);
+                  setMetodologiaHibridaSelecionada(false);
                 }}
               />
             </div>
