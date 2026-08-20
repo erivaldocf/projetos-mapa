@@ -4,13 +4,42 @@ import Step1 from "../components/forms/Step1";
 import Step2 from "../components/forms/Step2";
 import Step3 from "../components/forms/Step3";
 import Step4 from "../components/forms/Step4";
+import backgroundForm from "../assets/background_form.jpg";
 
 export default function FormPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [escolas, setEscolas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [enviadoComSucesso, setEnviadoComSucesso] = useState(false);
-  const formRef = useRef(null); // Referência para o formulário
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    async function fetchEscolas() {
+      try {
+        const { data, error } = await supabase
+          .from("escolas")
+          .select("inep, escola, direc, municipio");
+
+        if (error) throw error;
+        setEscolas(data || []);
+      } catch (err) {
+        console.error("Erro ao carregar escolas:", err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEscolas();
+  }, []);
+
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [currentStep]);
 
   const [formData, setFormData] = useState({
     // Step 1
@@ -51,34 +80,6 @@ export default function FormPage() {
     descricao_fotos: "",
   });
 
-  useEffect(() => {
-    async function fetchEscolas() {
-      try {
-        const { data, error } = await supabase
-          .from("escolas")
-          .select("inep, escola, direc, municipio");
-
-        if (error) throw error;
-        setEscolas(data || []);
-      } catch (err) {
-        console.error("Erro ao carregar escolas:", err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchEscolas();
-  }, []);
-
-  useEffect(() => {
-    if (formRef.current) {
-      formRef.current.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-  }, [currentStep]);
-
   const updateFormData = (fields) => {
     setFormData((prev) => ({ ...prev, ...fields }));
   };
@@ -88,8 +89,8 @@ export default function FormPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full bg-gray-50">
-        <p className="text-gray-600 font-medium">Carregando formulário...</p>
+      <div className="flex justify-center items-center h-full bg-[#b8d1c2]">
+        <p className="text-[#122318] font-bold">Carregando formulário...</p>
       </div>
     );
   }
@@ -97,20 +98,23 @@ export default function FormPage() {
   // Tela exibida após o salvamento no Supabase
   if (enviadoComSucesso) {
     return (
-      <div className="h-full bg-gray-100 flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white rounded-xl shadow-md p-8 text-center space-y-4">
-          <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl font-bold">
+      <div 
+        className="w-full h-full p-4 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${backgroundForm})` }}
+      >
+        <div className="max-w-md w-full bg-[#b8d1c2] rounded-2xl shadow-2xl border-2 border-[#244231] p-8 text-center space-y-4 text-[#122318]">
+          <div className="w-16 h-16 bg-[#97bfa7] text-[#122318] rounded-full flex items-center justify-center mx-auto text-3xl font-bold border border-[#6b997e]">
             ✓
           </div>
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-bold text-[#122318]">
             Formulário Enviado!
           </h2>
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-800 text-sm font-medium">
             O projeto foi registrado com sucesso no banco de dados.
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="w-full py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all cursor-pointer"
+            className="w-full py-2.5 bg-[#244231] text-white font-semibold rounded-lg hover:bg-[#162e21] transition-all cursor-pointer shadow-md"
           >
             Cadastrar Novo Projeto
           </button>
@@ -120,20 +124,23 @@ export default function FormPage() {
   }
 
   return (
-    <div className="w-full h-full bg-gray-100 p-4 md:p-6 flex items-center justify-center overflow-hidden">
-      {/* Card do Formulário com Limite de Altura */}
-      <div className="max-w-3xl w-full bg-white rounded-xl shadow-md flex flex-col max-h-full">
+    <div 
+      className="w-full h-full p-4 md:p-6 flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${backgroundForm})` }}
+    >
+      {/* Card do Formulário com Limite de Altura e Destaque */}
+      <div className="max-w-3xl w-full bg-[#b8d1c2] text-[#122318] rounded-2xl shadow-2xl border-2 border-[#244231] flex flex-col max-h-full">
         {/* Barra de Progresso (Fixa no topo do card) */}
-        <div className="p-6 pb-4 border-b border-gray-100 flex-none bg-white rounded-t-xl">
+        <div className="p-6 pb-4 border-b border-[#a3c4b0] flex-none bg-[#abc7b5] rounded-t-2xl">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blue-600 bg-blue-100">
+            <span className="text-xs font-bold inline-block py-1 px-3 uppercase rounded-full text-[#122318] bg-[#97bfa7] border border-[#6b997e]">
               Etapa {currentStep} de 4
             </span>
           </div>
-          <div className="overflow-hidden h-2 text-xs flex rounded bg-blue-100">
+          <div className="overflow-hidden h-2.5 text-xs flex rounded-full bg-[#8fb99f]">
             <div
               style={{ width: `${(currentStep / 4) * 100}%` }}
-              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-600 transition-all duration-300"
+              className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#244231] transition-all duration-300"
             ></div>
           </div>
         </div>

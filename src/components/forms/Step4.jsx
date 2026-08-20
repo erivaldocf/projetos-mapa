@@ -98,22 +98,22 @@ export default function Step4({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
+      <h2 className="text-xl font-bold text-[#122318] border-b-2 border-[#8fb99f] pb-2">
         Link do Projeto
       </h2>
 
       {erroMsg && (
-        <div className="p-3 bg-red-100 border border-red-400 text-red-700 text-sm rounded-lg">
+        <div className="p-3 bg-red-100 border-2 border-red-500 text-red-900 text-sm rounded-lg font-bold">
           {erroMsg}
         </div>
       )}
 
       {/* Aviso LGPD / ECA Digital */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-3">
-        <h3 className="text-sm font-bold text-amber-900 flex items-center gap-1">
+      <div className="bg-[#fef9c3] border-2 border-[#d97706] rounded-xl p-4 space-y-3 text-amber-950 shadow-md">
+        <h3 className="text-sm font-bold text-amber-950 flex items-center gap-1.5">
           ⚠️ Aviso Importante sobre Uso de Imagens (LGPD e ECA Digital)
         </h3>
-        <p className="text-xs text-amber-800 leading-relaxed">
+        <p className="text-xs text-amber-900 font-semibold leading-relaxed">
           Certifique-se de que todas as fotos enviadas possuem os devidos Termos
           de Autorização de Uso de Imagem assinados pelos pais ou responsáveis
           legais (no caso de menores de idade), em conformidade com a Lei Geral
@@ -122,7 +122,7 @@ export default function Step4({
           indevida ou vexatória.
         </p>
 
-        <label className="flex items-start space-x-2 pt-2 cursor-pointer">
+        <label className="flex items-start space-x-2.5 pt-2 cursor-pointer">
           <input
             type="checkbox"
             checked={formData.concorda_lgpd || false}
@@ -130,9 +130,9 @@ export default function Step4({
               updateFormData({ concorda_lgpd: e.target.checked })
             }
             required
-            className="mt-1 rounded text-blue-600 focus:ring-blue-500"
+            className="mt-0.5 w-4 h-4 rounded text-[#d97706] bg-white border-2 border-[#d97706] focus:ring-[#d97706] cursor-pointer"
           />
-          <span className="text-xs font-semibold text-gray-800">
+          <span className="text-xs font-bold text-amber-950 select-none">
             Declaro que as fotografias enviadas possuem autorização de uso de
             imagem e estão de acordo com as normas da LGPD e do ECA Digital.
           </span>
@@ -141,9 +141,9 @@ export default function Step4({
 
       {/* Link do Projeto */}
       <div className="md:col-span-3">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Link do Projeto{" "}
-          <span className="text-gray-400 font-normal">(Opcional)</span>
+          <span className="text-gray-700 font-normal text-xs">(Opcional)</span>
         </label>
 
         <input
@@ -151,10 +151,10 @@ export default function Step4({
           value={formData.link_projeto || ""}
           onChange={(e) => updateFormData({ link_projeto: e.target.value })}
           placeholder="Ex: https://drive.google.com/..."
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
 
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-[#143021] mt-1.5 font-semibold">
           Informe o link para acessar materiais, documentos, vídeos ou outras
           informações relacionadas ao projeto.
         </p>
@@ -166,14 +166,14 @@ export default function Step4({
           type="button"
           onClick={prevStep}
           disabled={loading}
-          className="px-6 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-all disabled:opacity-50"
+          className="px-6 py-2.5 border-2 border-[#315740] bg-[#eef5f1] text-[#143021] font-bold rounded-lg hover:bg-[#dcefe4] transition-all disabled:opacity-50 cursor-pointer shadow-sm"
         >
           ← Voltar
         </button>
         <button
           type="submit"
           disabled={loading}
-          className="px-8 py-2.5 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-300 transition-all disabled:opacity-50 flex items-center gap-2"
+          className="px-8 py-2.5 bg-[#244231] text-white font-bold rounded-lg hover:bg-[#162e21] focus:ring-4 focus:ring-[#97bfa7] transition-all disabled:opacity-50 flex items-center gap-2 cursor-pointer shadow-md"
         >
           {loading ? "Enviando..." : "Finalizar e Enviar ✓"}
         </button>

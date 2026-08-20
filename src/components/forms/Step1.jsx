@@ -77,20 +77,20 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
+      <h2 className="text-xl font-bold text-[#122318] border-b-2 border-[#8fb99f] pb-2">
         Identificação da Escola e da Gestão
       </h2>
 
       {/* 1. SELEÇÃO DE DIREC */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           DIREC
         </label>
         <select
           value={formData.direc || ""}
           onChange={handleDirecChange}
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 font-semibold shadow-sm"
         >
           <option value="">Selecione a DIREC...</option>
           {DIRECS.map((direc) => (
@@ -103,7 +103,7 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
 
       {/* 2. SELEÇÃO DE MUNICÍPIO */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Município
         </label>
         <select
@@ -111,7 +111,7 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
           onChange={handleMunicipioChange}
           disabled={!formData.direc}
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white disabled:bg-gray-100 disabled:cursor-not-allowed"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 font-semibold shadow-sm disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed"
         >
           <option value="">
             {formData.direc
@@ -128,7 +128,7 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
 
       {/* 3. SELEÇÃO DE ESCOLA */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Escola
         </label>
 
@@ -158,24 +158,54 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
           onChange={handleEscolaChange}
           isSearchable
           styles={{
-            control: (base) => ({
+            control: (base, state) => ({
               ...base,
-              borderColor: erroEscola ? "#dc2626" : base.borderColor,
-              boxShadow: erroEscola ? "0 0 0 1px #dc2626" : base.boxShadow,
+              backgroundColor: state.isDisabled ? "#e5e7eb" : "#ffffff",
+              borderWidth: "2px",
+              borderColor: erroEscola ? "#dc2626" : state.isFocused ? "#244231" : "#315740",
+              borderRadius: "0.5rem",
+              padding: "2px",
+              boxShadow: state.isFocused ? "0 0 0 2px rgba(36, 66, 49, 0.3)" : "none",
               "&:hover": {
-                borderColor: erroEscola ? "#dc2626" : base.borderColor,
+                borderColor: erroEscola ? "#dc2626" : "#244231",
               },
+            }),
+            singleValue: (base) => ({
+              ...base,
+              color: "#111827",
+              fontWeight: 600,
+            }),
+            placeholder: (base) => ({
+              ...base,
+              color: "#4b5563",
+            }),
+            menu: (base) => ({
+              ...base,
+              backgroundColor: "#ffffff",
+              borderRadius: "0.5rem",
+              zIndex: 50,
+            }),
+            option: (base, state) => ({
+              ...base,
+              backgroundColor: state.isSelected
+                ? "#244231"
+                : state.isFocused
+                ? "#d9eadf"
+                : "#ffffff",
+              color: state.isSelected ? "#ffffff" : "#111827",
+              fontWeight: 500,
+              cursor: "pointer",
             }),
           }}
         />
         {erroEscola && (
-          <p className="mt-1 text-sm text-red-600">Selecione uma escola.</p>
+          <p className="mt-1 text-sm font-bold text-red-700">Selecione uma escola.</p>
         )}
       </div>
 
       {/* Telefone */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Telefone (de preferência WhatsApp)
         </label>
         <input
@@ -184,13 +214,13 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
           onChange={(e) => updateFormData({ telefone: e.target.value })}
           placeholder="(84) 99999-9999"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm"
         />
       </div>
 
       {/* E-mail Institucional */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           E-mail Institucional (@educar.rn.gov.br)
         </label>
         <input
@@ -201,13 +231,13 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
           }
           placeholder="exemplo@educar.rn.gov.br"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm"
         />
       </div>
 
       {/* Nome do Gestor */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Nome do Gestor da Escola
         </label>
         <input
@@ -216,7 +246,7 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
           onChange={(e) => updateFormData({ nome_gestor: e.target.value })}
           placeholder="Nome completo do gestor"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm"
         />
       </div>
 
@@ -224,7 +254,7 @@ export default function Step1({ formData, updateFormData, escolas, nextStep }) {
       <div className="flex justify-end pt-4">
         <button
           type="submit"
-          className="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all"
+          className="px-7 py-2.5 bg-[#244231] text-white font-bold rounded-lg hover:bg-[#162e21] focus:ring-4 focus:ring-[#97bfa7] transition-all shadow-md cursor-pointer"
         >
           Próximo →
         </button>

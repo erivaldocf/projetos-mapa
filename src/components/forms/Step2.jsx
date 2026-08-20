@@ -24,13 +24,13 @@ export default function Step2({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <h2 className="text-xl font-bold text-gray-800 border-b pb-2">
+      <h2 className="text-xl font-bold text-[#122318] border-b-2 border-[#8fb99f] pb-2">
         Detalhes do Projeto
       </h2>
 
       {/* Nome do Projeto */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Nome do Projeto / Atividade Científica / Evento Científico
         </label>
         <input
@@ -39,13 +39,13 @@ export default function Step2({
           onChange={(e) => updateFormData({ nome_projeto: e.target.value })}
           placeholder="Digite o nome do projeto"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Responsável pelo Projeto*/}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Responsável pelo Projeto
         </label>
         <input
@@ -54,13 +54,13 @@ export default function Step2({
           onChange={(e) => updateFormData({ responsavel: e.target.value })}
           placeholder="Nome do(a) professor(a) responsável"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Quantitativo de Estudantes Envolvidos */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Quantitativo de Estudantes Envolvidos
         </label>
         <input
@@ -70,13 +70,13 @@ export default function Step2({
           onChange={(e) => updateFormData({ qtd_estudantes: e.target.value })}
           placeholder="Ex: 25"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Quantitativo de Professores Envolvidos */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Quantitativo de Professores Envolvidos
         </label>
         <input
@@ -86,13 +86,13 @@ export default function Step2({
           onChange={(e) => updateFormData({ qtd_professores: e.target.value })}
           placeholder="Ex: 25"
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Descrição do Projeto */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Descrição do Projeto
         </label>
         <textarea
@@ -103,13 +103,13 @@ export default function Step2({
           }
           placeholder="Descreva de forma clara a proposta do projeto..."
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Objetivo */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Objetivo do Projeto
         </label>
         <textarea
@@ -118,13 +118,13 @@ export default function Step2({
           onChange={(e) => updateFormData({ objetivo: e.target.value })}
           placeholder="Descreva o objetivo principal do projeto..."
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Metodologia */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Metodologia
         </label>
         <textarea
@@ -133,12 +133,12 @@ export default function Step2({
           onChange={(e) => updateFormData({ metodologia: e.target.value })}
           placeholder="Ex: Aulas práticas, oficinas, pesquisa de campo, uso de kits de robótica..."
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
       {/* Metodologia Híbrida */}
-      <div className="flex items-center">
+      <div className="flex items-center bg-[#a8cbb4] p-3 rounded-lg border-2 border-[#315740] shadow-sm">
         <input
           type="checkbox"
           id="metodologia_hibrida"
@@ -146,11 +146,11 @@ export default function Step2({
           onChange={(e) =>
             updateFormData({ metodologia_hibrida: e.target.checked })
           }
-          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+          className="w-4 h-4 text-[#244231] bg-white border-2 border-[#315740] rounded focus:ring-[#244231] cursor-pointer"
         />
         <label
           htmlFor="metodologia_hibrida"
-          className="ml-2 text-sm font-medium text-gray-700"
+          className="ml-2.5 text-sm font-bold text-[#143021] cursor-pointer select-none"
         >
           Utiliza metodologia híbrida (presencial e online)
         </label>
@@ -158,7 +158,7 @@ export default function Step2({
 
       {/* Resultados Alcançados */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-bold text-[#143021] mb-1.5">
           Resultados alcançados pelo projeto
         </label>
         <textarea
@@ -167,7 +167,7 @@ export default function Step2({
           onChange={(e) => updateFormData({ resultados: e.target.value })}
           placeholder="Descreva os principais impactos e conquistas observados nos estudantes..."
           required
-          className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+          className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
         />
       </div>
 
@@ -175,7 +175,7 @@ export default function Step2({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Ano de Início */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-[#143021] mb-1.5">
             Ano de Início
           </label>
           <input
@@ -186,15 +186,15 @@ export default function Step2({
             onChange={(e) => updateFormData({ ano_inicio: e.target.value })}
             placeholder="Ex: 2024"
             required
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+            className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
           />
         </div>
 
         {/* Ano de Fim */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-[#143021] mb-1.5">
             Ano de Fim{" "}
-            <span className="text-gray-400 font-normal">(Opcional)</span>
+            <span className="text-gray-700 font-normal text-xs">(Opcional)</span>
           </label>
           <input
             type="number"
@@ -203,13 +203,13 @@ export default function Step2({
             value={formData.ano_fim || ""}
             onChange={(e) => updateFormData({ ano_fim: e.target.value })}
             placeholder="Ex: 2025"
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+            className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
           />
         </div>
 
         {/* Periodicidade */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-bold text-[#143021] mb-1.5">
             Periodicidade das Atividades
           </label>
           <input
@@ -218,7 +218,7 @@ export default function Step2({
             onChange={(e) => updateFormData({ periodicidade: e.target.value })}
             placeholder="Ex: Semanal, Quinzenal, Mensal"
             required
-            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+            className="w-full p-2.5 border-2 border-[#315740] rounded-lg focus:ring-2 focus:ring-[#244231] focus:border-[#244231] bg-white text-gray-900 placeholder-gray-500 font-semibold shadow-sm text-sm"
           />
         </div>
       </div>
@@ -228,13 +228,13 @@ export default function Step2({
         <button
           type="button"
           onClick={prevStep}
-          className="px-6 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-all cursor-pointer"
+          className="px-6 py-2.5 border-2 border-[#315740] bg-[#eef5f1] text-[#143021] font-bold rounded-lg hover:bg-[#dcefe4] transition-all cursor-pointer shadow-sm"
         >
           ← Voltar
         </button>
         <button
           type="submit"
-          className="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 transition-all cursor-pointer"
+          className="px-7 py-2.5 bg-[#244231] text-white font-bold rounded-lg hover:bg-[#162e21] focus:ring-4 focus:ring-[#97bfa7] transition-all shadow-md cursor-pointer"
         >
           Próximo →
         </button>
