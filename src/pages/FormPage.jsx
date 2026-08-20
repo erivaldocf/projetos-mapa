@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { supabase } from "../services/supabaseClient";
 import Step1 from "../components/forms/Step1";
 import Step2 from "../components/forms/Step2";
@@ -10,6 +10,7 @@ export default function FormPage() {
   const [escolas, setEscolas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [enviadoComSucesso, setEnviadoComSucesso] = useState(false);
+  const formRef = useRef(null); // Referência para o formulário
 
   const [formData, setFormData] = useState({
     // Step 1
@@ -68,6 +69,15 @@ export default function FormPage() {
 
     fetchEscolas();
   }, []);
+
+  useEffect(() => {
+    if (formRef.current) {
+      formRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [currentStep]);
 
   const updateFormData = (fields) => {
     setFormData((prev) => ({ ...prev, ...fields }));
@@ -129,7 +139,7 @@ export default function FormPage() {
         </div>
 
         {/* ÁREA DO PASSO COM BARRA DE ROLAGEM */}
-        <div className="p-6 md:p-8 flex-1 overflow-y-auto">
+        <div ref={formRef} className="p-6 md:p-8 flex-1 overflow-y-auto">
           {currentStep === 1 && (
             <Step1
               formData={formData}
