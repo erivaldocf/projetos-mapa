@@ -77,17 +77,18 @@ export default function Step3({
     }
 
     // Inclui opções informadas nos campos de texto "Outro"
+    // Inclui opções informadas nos campos de texto "Outro"
     let componentesFinais = [...(formData.disciplinas || [])];
     if (
       outroComponente.trim() &&
-      !componentesFinais.includes(`Outro: ${outroComponente}`)
+      !componentesFinais.includes(outroComponente.trim())
     ) {
-      componentesFinais.push(`Outro: ${outroComponente}`);
+      componentesFinais.push(outroComponente.trim());
     }
 
     let areasFinais = [...(formData.areas_conhecimento || [])];
-    if (outraArea.trim() && !areasFinais.includes(`Outro: ${outraArea}`)) {
-      areasFinais.push(`Outro: ${outraArea}`);
+    if (outraArea.trim() && !areasFinais.includes(outraArea.trim())) {
+      areasFinais.push(outraArea.trim());
     }
 
     updateFormData({
@@ -163,8 +164,8 @@ export default function Step3({
       backgroundColor: state.isSelected
         ? "#244231"
         : state.isFocused
-        ? "#d9eadf"
-        : "#ffffff",
+          ? "#d9eadf"
+          : "#ffffff",
       color: state.isSelected ? "#ffffff" : "#111827",
       fontWeight: 500,
       cursor: "pointer",
@@ -213,7 +214,9 @@ export default function Step3({
               <label
                 key={ano}
                 className={`flex items-center space-x-2.5 text-sm font-bold ${
-                  habilitado ? "text-[#143021] cursor-pointer" : "text-[#587363] cursor-not-allowed"
+                  habilitado
+                    ? "text-[#143021] cursor-pointer"
+                    : "text-[#587363] cursor-not-allowed"
                 }`}
               >
                 <input
